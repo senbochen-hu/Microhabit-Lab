@@ -20,7 +20,7 @@
 	border-radius: 24rpx;
 	padding: 32rpx;
 	color: white;
-	box-shadow: 0 4rpx 24rpx rgba(15, 23, 42, 0.12);
+	box-shadow: 0 4rpx 20rpx rgba(76, 184, 165, 0.3);
 }
 
 .status-title {
@@ -54,7 +54,7 @@
 	background: white;
 	border-radius: 24rpx;
 	padding: 24rpx;
-	box-shadow: 0 4rpx 24rpx rgba(15, 23, 42, 0.04);
+	box-shadow: 0 2rpx 16rpx rgba(15, 23, 42, 0.06);
 }
 
 .section-title {
@@ -94,7 +94,7 @@
 	background: white;
 	border-radius: 24rpx;
 	padding: 24rpx;
-	box-shadow: 0 4rpx 24rpx rgba(15, 23, 42, 0.04);
+	box-shadow: 0 2rpx 16rpx rgba(15, 23, 42, 0.06);
 }
 
 .comparison-table {

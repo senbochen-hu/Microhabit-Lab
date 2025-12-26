@@ -82,9 +82,9 @@
 .template-card {
   background: white;
   border-radius: 24rpx;
-  padding: 32rpx;
-  margin-bottom: 24rpx;
-  box-shadow: 0 4rpx 24rpx rgba(15, 23, 42, 0.04);
+  padding: 28rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 2rpx 16rpx rgba(15, 23, 42, 0.06);
 }
 
 .template-header {
@@ -102,9 +102,10 @@
 
 .template-name {
   font-size: 32rpx;
-  font-weight: 500;
+  font-weight: 600;
   color: var(--text-primary);
-  margin-bottom: 16rpx;
+  margin-bottom: 12rpx;
+  line-height: 1.2;
 }
 
 .template-trigger {
@@ -122,14 +123,20 @@
 
 .btn-add {
   width: 100%;
-  height: 80rpx;
-  line-height: 80rpx;
+  height: 64rpx;
+  line-height: 64rpx;
   background: var(--primary-bg);
   color: var(--primary-color);
   border: 2rpx solid var(--primary-color);
   border-radius: 999rpx;
   font-size: 28rpx;
   font-weight: 500;
+  transition: all 0.3s;
+}
+
+.btn-add:active {
+  transform: scale(0.95);
+  opacity: 0.8;
 }
 
 /* 我的习惯列表 */
@@ -140,9 +147,15 @@
 .habit-item {
   background: white;
   border-radius: 24rpx;
-  padding: 32rpx;
-  margin-bottom: 24rpx;
-  box-shadow: 0 4rpx 24rpx rgba(15, 23, 42, 0.04);
+  padding: 24rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 2rpx 16rpx rgba(15, 23, 42, 0.06);
+  transition: all 0.3s;
+}
+
+.habit-item:active {
+  transform: scale(0.98);
+  box-shadow: 0 4rpx 20rpx rgba(15, 23, 42, 0.1);
 }
 
 .habit-main-info {
@@ -241,14 +254,20 @@
 }
 
 .btn-retry {
-  width: 200rpx;
-  height: 80rpx;
-  line-height: 80rpx;
+  width: 240rpx;
+  height: 64rpx;
+  line-height: 64rpx;
   background: var(--primary-color);
   color: white;
   border-radius: 999rpx;
   font-size: 28rpx;
   font-weight: 500;
+  transition: all 0.3s;
+}
+
+.btn-retry:active {
+  transform: scale(0.95);
+  opacity: 0.9;
 }
 
 /* 空状态 */

@@ -32,26 +32,32 @@
 .habit-card {
   background: white;
   border-radius: 24rpx;
-  padding: 32rpx;
-  margin-bottom: 24rpx;
-  box-shadow: 0 4rpx 24rpx rgba(15, 23, 42, 0.04);
+  padding: 24rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 2rpx 16rpx rgba(15, 23, 42, 0.06);
   transition: all 0.3s;
 }
 
 .habit-card:active {
   transform: scale(0.98);
+  box-shadow: 0 4rpx 20rpx rgba(15, 23, 42, 0.1);
 }
 
 .habit-main {
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 
 /* 左侧完成图标 */
 .check-icon {
-  width: 48rpx;
-  height: 48rpx;
-  margin-right: 24rpx;
+  width: 52rpx;
+  height: 52rpx;
+  margin-right: 20rpx;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .check-icon image {
@@ -60,24 +66,30 @@
 }
 
 .check-placeholder {
-  width: 48rpx;
-  margin-right: 24rpx;
+  width: 52rpx;
+  height: 52rpx;
+  margin-right: 20rpx;
+  flex-shrink: 0;
 }
 
 /* 中间习惯信息 */
 .habit-info {
   flex: 1;
   min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .habit-name {
   font-size: 32rpx;
   font-weight: 500;
   color: var(--text-primary);
-  margin-bottom: 16rpx;
+  margin-bottom: 12rpx;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  line-height: 1.2;
 }
 
 .habit-name.completed {
@@ -107,19 +119,21 @@
 
 /* 右侧打卡按钮 */
 .check-in-btn {
-  width: 88rpx;
-  height: 88rpx;
+  width: 72rpx;
+  height: 72rpx;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-left: 24rpx;
   transition: all 0.2s;
+  flex-shrink: 0;
 }
 
 .check-in-btn image {
-  width: 88rpx;
-  height: 88rpx;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
 }
 
 .check-in-btn:active:not(.disabled) {

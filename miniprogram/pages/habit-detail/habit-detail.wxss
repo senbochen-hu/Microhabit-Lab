@@ -1,10 +1,15 @@
-.page-container { padding: 32rpx; display: flex; flex-direction: column; gap: 24rpx; }
+.page-container {
+  padding: 32rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
 
 .header-card {
 	background: white;
 	border-radius: 24rpx;
-	padding: 32rpx;
-	box-shadow: 0 4rpx 24rpx rgba(15, 23, 42, 0.04);
+	padding: 28rpx;
+	box-shadow: 0 2rpx 16rpx rgba(15, 23, 42, 0.06);
 }
 
 .title {
@@ -43,9 +48,14 @@
 .stat-card {
 	background: white;
 	border-radius: 24rpx;
-	padding: 24rpx;
+	padding: 20rpx;
 	text-align: center;
-	box-shadow: 0 4rpx 24rpx rgba(15, 23, 42, 0.04);
+	box-shadow: 0 2rpx 16rpx rgba(15, 23, 42, 0.06);
+	transition: all 0.3s;
+}
+
+.stat-card:active {
+	transform: scale(0.98);
 }
 
 .stat-value {
@@ -64,7 +74,7 @@
 	background: white;
 	border-radius: 24rpx;
 	padding: 24rpx;
-	box-shadow: 0 4rpx 24rpx rgba(15, 23, 42, 0.04);
+	box-shadow: 0 2rpx 16rpx rgba(15, 23, 42, 0.06);
 }
 
 .progress-text {
@@ -92,7 +102,7 @@
 	background: white;
 	border-radius: 24rpx;
 	padding: 24rpx;
-	box-shadow: 0 4rpx 24rpx rgba(15, 23, 42, 0.04);
+	box-shadow: 0 2rpx 16rpx rgba(15, 23, 42, 0.06);
 }
 
 .section-title {
@@ -108,7 +118,7 @@
 }
 
 .calendar-cell {
-	height: 80rpx;
+	height: 72rpx;
 	border-radius: 16rpx;
 	background: #f7f8fa;
 	display: flex;
@@ -117,6 +127,7 @@
 	color: var(--text-secondary);
 	font-size: 28rpx;
 	border: 1rpx solid #edf0f3;
+	font-weight: 500;
 }
 
 .calendar-cell.done {
@@ -159,7 +170,7 @@
 	background: white;
 	border-radius: 24rpx;
 	padding: 24rpx;
-	box-shadow: 0 4rpx 24rpx rgba(15, 23, 42, 0.04);
+	box-shadow: 0 2rpx 16rpx rgba(15, 23, 42, 0.06);
 }
 
 .advice-text {

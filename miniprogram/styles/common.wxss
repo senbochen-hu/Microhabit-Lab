@@ -49,8 +49,8 @@
 .card {
   background: var(--bg-white);
   border-radius: var(--radius-md);
-  padding: 32rpx;
-  box-shadow: var(--shadow-sm);
+  padding: 28rpx;
+  box-shadow: 0 2rpx 16rpx rgba(15, 23, 42, 0.06);
 }
 
 .card-small {
@@ -113,7 +113,7 @@
   align-items: center;
   justify-content: center;
   border-radius: var(--radius-full);
-  padding: 24rpx 48rpx;
+  padding: 20rpx 48rpx;
   font-size: var(--font-md);
   font-weight: var(--font-medium);
   transition: all 0.3s;
