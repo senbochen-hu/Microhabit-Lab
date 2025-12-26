@@ -1,0 +1,47 @@
+{
+  "pages": [
+    "pages/home/home",
+    "pages/habits/habits",
+    "pages/stats/stats",
+    "pages/create-habit/create-habit",
+    "pages/habit-detail/habit-detail",
+    "pages/membership/membership"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "微习惯实验室",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#F7F8FA"
+  },
+  "tabBar": {
+    "color": "#9CA3AF",
+    "selectedColor": "#4CB8A5",
+    "backgroundColor": "#FFFFFF",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "text": "今日",
+        "iconPath": "assets/icons/home.png",
+        "selectedIconPath": "assets/icons/home-active.png"
+      },
+      {
+        "pagePath": "pages/habits/habits",
+        "text": "习惯库",
+        "iconPath": "assets/icons/habits.png",
+        "selectedIconPath": "assets/icons/habits-active.png"
+      },
+      {
+        "pagePath": "pages/stats/stats",
+        "text": "数据",
+        "iconPath": "assets/icons/stats.png",
+        "selectedIconPath": "assets/icons/stats-active.png"
+      }
+    ]
+  },
+  "cloud": true,
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}

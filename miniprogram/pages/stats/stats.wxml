@@ -1,0 +1,107 @@
+<!-- 数据&我页 -->
+<view class="container">
+  <view class="page-container">
+    <!-- 统计卡片 -->
+    <view class="stats-cards">
+      <view class="stat-card">
+        <view class="stat-value">{{stats.inProgress}}</view>
+        <view class="stat-label">进行中</view>
+      </view>
+      <view class="stat-card">
+        <view class="stat-value">{{stats.finished}}</view>
+        <view class="stat-label">完成实验</view>
+      </view>
+      <view class="stat-card">
+        <view class="stat-value">{{stats.maxStreak}}</view>
+        <view class="stat-label">最长坚持</view>
+      </view>
+    </view>
+
+    <!-- 趋势卡片 -->
+    <view class="trend-card">
+      <view class="trend-header">
+        <view>
+          <view class="trend-title">近7天完成率</view>
+          <view class="trend-sub">平均 {{weeklyTrend.avgRate}}%</view>
+        </view>
+      </view>
+      <view class="trend-bars">
+        <block wx:for="{{weeklyTrend.data}}" wx:key="date">
+          <view class="bar-row clickable" bindtap="showTrendDetail" data-date="{{item.date}}" data-rate="{{item.rate}}" data-completed="{{item.completed}}" data-active="{{item.active}}">
+            <text class="bar-label">{{formatDateLabel(item.date)}}</text>
+            <view class="bar-track">
+              <view class="bar-fill" style="width: {{item.rate}}%;"></view>
+            </view>
+            <text class="bar-value">{{item.rate}}%</text>
+          </view>
+        </block>
+      </view>
+    </view>
+
+    <view class="trend-card">
+      <view class="trend-header">
+        <view>
+          <view class="trend-title">近30天完成率</view>
+          <view class="trend-sub">平均 {{monthlyTrend.avgRate}}%</view>
+        </view>
+      </view>
+      <view class="trend-bars small">
+        <block wx:for="{{monthlyTrend.data}}" wx:key="date">
+          <view class="bar-row clickable" bindtap="showTrendDetail" data-date="{{item.date}}" data-rate="{{item.rate}}" data-completed="{{item.completed}}" data-active="{{item.active}}">
+            <text class="bar-label">{{formatDateLabel(item.date)}}</text>
+            <view class="bar-track">
+              <view class="bar-fill" style="width: {{item.rate}}%;"></view>
+            </view>
+            <text class="bar-value">{{item.rate}}%</text>
+          </view>
+        </block>
+      </view>
+    </view>
+
+    <!-- 会员模块 -->
+    <view class="member-card" bindtap="goToMembership">
+      <view class="member-title">{{memberInfo.title}}</view>
+      <view class="member-desc">{{memberInfo.desc}}</view>
+      <view class="member-action" wx:if="{{!memberInfo.isMember}}">开通会员 →</view>
+    </view>
+
+    <!-- 设置入口 -->
+    <view class="settings-list">
+      <view class="setting-item">
+        <text>隐私政策</text>
+        <text class="arrow">›</text>
+      </view>
+      <view class="setting-item">
+        <text>关于我们</text>
+        <text class="arrow">›</text>
+      </view>
+    </view>
+
+    <!-- 趋势详情弹窗 -->
+    <view class="modal-mask" wx:if="{{showTrendModal}}" catchtap="closeTrendModal">
+      <view class="trend-modal" catchtap>
+        <view class="modal-date">{{selectedTrendData.formattedDate}}</view>
+        <view class="trend-detail">
+          <view class="detail-item">
+            <view class="detail-label">完成习惯数</view>
+            <view class="detail-value">{{selectedTrendData.completed}}</view>
+          </view>
+          <view class="detail-item">
+            <view class="detail-label">活跃习惯数</view>
+            <view class="detail-value">{{selectedTrendData.active}}</view>
+          </view>
+          <view class="detail-item">
+            <view class="detail-label">完成率</view>
+            <view class="detail-value">{{selectedTrendData.rate}}%</view>
+          </view>
+        </view>
+        <view class="progress-bar-detail">
+          <view class="bar-track-detail">
+            <view class="bar-fill-detail" style="width: {{selectedTrendData.rate}}%;"></view>
+          </view>
+        </view>
+        <button class="btn btn-primary" bindtap="closeTrendModal">关闭</button>
+      </view>
+    </view>
+  </view>
+</view>

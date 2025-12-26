@@ -1,0 +1,157 @@
+.page-container {
+	padding: 32rpx;
+	display: flex;
+	flex-direction: column;
+	gap: 24rpx;
+}
+
+.notice {
+	background: #fff7e6;
+	color: #ad6800;
+	border: 1rpx solid #ffd591;
+	border-radius: 16rpx;
+	padding: 16rpx 20rpx;
+	font-size: 26rpx;
+	line-height: 1.5;
+}
+
+.status-card {
+	background: linear-gradient(135deg, #4CB8A5 0%, #4C9BFF 100%);
+	border-radius: 24rpx;
+	padding: 32rpx;
+	color: white;
+	box-shadow: 0 4rpx 24rpx rgba(15, 23, 42, 0.12);
+}
+
+.status-title {
+	font-size: 38rpx;
+	font-weight: 700;
+	margin-bottom: 8rpx;
+}
+
+.status-desc {
+	font-size: 28rpx;
+	opacity: 0.9;
+	margin-bottom: 16rpx;
+}
+
+.price {
+	font-size: 48rpx;
+	font-weight: 700;
+	margin-bottom: 16rpx;
+}
+
+.pay-btn {
+	background: white;
+	color: #2c7a68;
+	border: none;
+	border-radius: 999rpx;
+	font-size: 32rpx;
+}
+
+.benefit-card,
+.hint-card {
+	background: white;
+	border-radius: 24rpx;
+	padding: 24rpx;
+	box-shadow: 0 4rpx 24rpx rgba(15, 23, 42, 0.04);
+}
+
+.section-title {
+	font-size: 32rpx;
+	font-weight: 600;
+	margin-bottom: 16rpx;
+}
+
+.benefit-item {
+	display: flex;
+	gap: 12rpx;
+	font-size: 28rpx;
+	color: var(--text-secondary);
+	margin-bottom: 12rpx;
+}
+
+.dot {
+	color: var(--primary-color);
+}
+
+.benefit-text { line-height: 1.5; }
+
+.hint-title {
+	font-size: 30rpx;
+	font-weight: 600;
+	margin-bottom: 8rpx;
+}
+
+.hint-text {
+	font-size: 26rpx;
+	color: var(--text-secondary);
+	line-height: 1.6;
+}
+
+/* 对比表格样式 */
+.comparison-card {
+	background: white;
+	border-radius: 24rpx;
+	padding: 24rpx;
+	box-shadow: 0 4rpx 24rpx rgba(15, 23, 42, 0.04);
+}
+
+.comparison-table {
+	border: 1rpx solid #f0f2f5;
+	border-radius: 16rpx;
+	overflow: hidden;
+	font-size: 26rpx;
+}
+
+.table-header {
+	display: grid;
+	grid-template-columns: 1.2fr 1fr 1fr;
+	background: #f7f8fa;
+	border-bottom: 1rpx solid #f0f2f5;
+	font-weight: 600;
+	color: var(--text-primary);
+}
+
+.table-row {
+	display: grid;
+	grid-template-columns: 1.2fr 1fr 1fr;
+	border-bottom: 1rpx solid #f0f2f5;
+}
+
+.table-row:last-child {
+	border-bottom: none;
+}
+
+.table-row.even {
+	background: #fafbfc;
+}
+
+.table-cell {
+	padding: 16rpx 12rpx;
+	display: flex;
+	align-items: center;
+	word-break: break-word;
+}
+
+.header-cell {
+	padding: 12rpx;
+	text-align: center;
+}
+
+.feature-cell {
+	color: var(--text-secondary);
+	font-weight: 500;
+}
+
+.free-cell {
+	text-align: center;
+	color: var(--text-secondary);
+}
+
+.member-cell {
+	text-align: center;
+	color: var(--primary-color);
+	font-weight: 500;
+}
+

@@ -1,0 +1,298 @@
+/* 习惯库页样式 */
+
+.tabs {
+  display: flex;
+  background: white;
+  border-bottom: 2rpx solid var(--border-light);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.tab {
+  flex: 1;
+  text-align: center;
+  padding: 32rpx 0;
+  font-size: 32rpx;
+  color: var(--text-secondary);
+  position: relative;
+}
+
+.tab.active {
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+.tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60rpx;
+  height: 6rpx;
+  background: var(--primary-color);
+  border-radius: 3rpx;
+}
+
+/* 搜索框 */
+.search-box {
+  padding: 16rpx 32rpx 0 32rpx;
+  background: white;
+}
+
+.search-input {
+  width: 100%;
+  height: 72rpx;
+  padding: 0 24rpx;
+  border-radius: 16rpx;
+  background: #f5f7fa;
+  border: 2rpx solid #eef1f5;
+  font-size: 28rpx;
+  color: var(--text-primary);
+}
+
+/* 分类筛选 */
+.category-scroll {
+  white-space: nowrap;
+  padding: 24rpx 32rpx;
+  background: white;
+}
+
+.category-item {
+  display: inline-block;
+  padding: 16rpx 32rpx;
+  margin-right: 16rpx;
+  background: var(--bg-gray);
+  border-radius: 999rpx;
+  font-size: 28rpx;
+  color: var(--text-secondary);
+}
+
+.category-item.active {
+  background: var(--primary-color);
+  color: white;
+}
+
+/* 模板列表 */
+.template-list {
+  padding: 24rpx 32rpx;
+}
+
+.template-card {
+  background: white;
+  border-radius: 24rpx;
+  padding: 32rpx;
+  margin-bottom: 24rpx;
+  box-shadow: 0 4rpx 24rpx rgba(15, 23, 42, 0.04);
+}
+
+.template-header {
+  margin-bottom: 16rpx;
+}
+
+.template-category {
+  display: inline-block;
+  padding: 8rpx 16rpx;
+  background: var(--primary-bg);
+  color: var(--primary-color);
+  border-radius: 8rpx;
+  font-size: 24rpx;
+}
+
+.template-name {
+  font-size: 32rpx;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-bottom: 16rpx;
+}
+
+.template-trigger {
+  font-size: 24rpx;
+  color: var(--text-tertiary);
+  margin-bottom: 16rpx;
+}
+
+.template-desc {
+  font-size: 28rpx;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 24rpx;
+}
+
+.btn-add {
+  width: 100%;
+  height: 80rpx;
+  line-height: 80rpx;
+  background: var(--primary-bg);
+  color: var(--primary-color);
+  border: 2rpx solid var(--primary-color);
+  border-radius: 999rpx;
+  font-size: 28rpx;
+  font-weight: 500;
+}
+
+/* 我的习惯列表 */
+.my-habits-list {
+  padding: 24rpx 32rpx;
+}
+
+.habit-item {
+  background: white;
+  border-radius: 24rpx;
+  padding: 32rpx;
+  margin-bottom: 24rpx;
+  box-shadow: 0 4rpx 24rpx rgba(15, 23, 42, 0.04);
+}
+
+.habit-main-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16rpx;
+}
+
+.habit-name {
+  flex: 1;
+  font-size: 32rpx;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.habit-status {
+  padding: 8rpx 16rpx;
+  border-radius: 8rpx;
+  font-size: 24rpx;
+}
+
+.habit-status.in_progress {
+  background: rgba(16, 185, 129, 0.1);
+  color: var(--success-color);
+}
+
+.habit-status.finished {
+  background: var(--bg-gray);
+  color: var(--text-tertiary);
+}
+
+.habit-progress {
+  display: flex;
+  flex-direction: column;
+  gap: 8rpx;
+}
+
+.habit-progress-text {
+  font-size: 24rpx;
+  color: var(--text-tertiary);
+}
+
+.habit-progress-bar {
+  width: 100%;
+  height: 12rpx;
+  background: #f0f2f5;
+  border-radius: 12rpx;
+  overflow: hidden;
+}
+
+.habit-progress-inner {
+  height: 100%;
+  background: linear-gradient(135deg, #4CB8A5 0%, #4C9BFF 100%);
+  border-radius: 12rpx;
+}
+
+/* 加载骨架屏 */
+.loading-skeleton {
+  padding: 24rpx 32rpx;
+}
+
+.skeleton-card {
+  height: 200rpx;
+  background: linear-gradient(90deg, #f5f7fa 25%, #eef1f5 50%, #f5f7fa 75%);
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s infinite;
+  border-radius: 24rpx;
+  margin-bottom: 24rpx;
+}
+
+.skeleton-item {
+  height: 120rpx;
+  background: linear-gradient(90deg, #f5f7fa 25%, #eef1f5 50%, #f5f7fa 75%);
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s infinite;
+  border-radius: 24rpx;
+  margin-bottom: 24rpx;
+}
+
+@keyframes skeleton-loading {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* 错误状态 */
+.error-state {
+  padding: 64rpx 32rpx 32rpx;
+  text-align: center;
+}
+
+.error-text {
+  font-size: 28rpx;
+  color: var(--text-secondary);
+  margin-bottom: 32rpx;
+}
+
+.btn-retry {
+  width: 200rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  background: var(--primary-color);
+  color: white;
+  border-radius: 999rpx;
+  font-size: 28rpx;
+  font-weight: 500;
+}
+
+/* 空状态 */
+.empty-state {
+  padding: 64rpx 32rpx 32rpx;
+  text-align: center;
+}
+
+.empty-text {
+  font-size: 28rpx;
+  color: var(--text-secondary);
+}
+
+/* 筛选条 */
+.filter-bar {
+  background: white;
+  border-bottom: 2rpx solid var(--border-light);
+}
+
+.filter-scroll {
+  white-space: nowrap;
+  padding: 16rpx 32rpx;
+}
+
+.filter-item {
+  display: inline-block;
+  padding: 12rpx 24rpx;
+  margin-right: 16rpx;
+  background: #f5f7fa;
+  border-radius: 999rpx;
+  font-size: 26rpx;
+  color: var(--text-secondary);
+}
+
+.filter-item.active {
+  background: var(--primary-color);
+  color: white;
+}
+
+.divider {
+  display: inline-block;
+  width: 2rpx;
+  height: 24rpx;
+  background: var(--border-light);
+  margin: 0 8rpx;
+  vertical-align: middle;
+}

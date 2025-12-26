@@ -1,0 +1,96 @@
+<view class="container">
+  <view class="page-container" wx:if="{{!loading && habit}}">
+    <!-- 顶部信息 -->
+    <view class="header-card">
+      <view class="title">{{habit.name}}</view>
+      <view class="meta">
+        <text class="tag">{{categoryName || '习惯'}}</text>
+        <text class="tag" wx:if="{{habit.trigger || habit.default_trigger}}">触发器：{{habit.trigger || habit.default_trigger}}</text>
+        <text class="tag" wx:if="{{habit.target_times_per_day}}">目标/天：{{habit.target_times_per_day}}</text>
+      </view>
+      <view class="desc" wx:if="{{habit.description}}">{{habit.description}}</view>
+    </view>
+
+    <!-- 统计卡片 -->
+    <view class="stats-grid">
+      <view class="stat-card">
+        <view class="stat-value">{{stats.completion_rate}}%</view>
+        <view class="stat-label">完成率</view>
+      </view>
+      <view class="stat-card">
+        <view class="stat-value">{{stats.completed_days}} / {{stats.total_days}}</view>
+        <view class="stat-label">已完成天数</view>
+      </view>
+      <view class="stat-card">
+        <view class="stat-value">{{stats.max_streak}}</view>
+        <view class="stat-label">最长连续</view>
+      </view>
+    </view>
+
+    <!-- 进度条 -->
+    <view class="progress-card">
+      <view class="progress-text">第 {{stats.progress.current}} / {{stats.progress.total}} 天</view>
+      <view class="progress-bar">
+        <view class="progress-inner" style="width: {{stats.progress.percentage}}%;"></view>
+      </view>
+    </view>
+
+    <!-- 21天日历 -->
+    <view class="calendar-card">
+      <view class="section-title">21 天实验进度</view>
+      <view class="calendar-grid">
+        <block wx:for="{{calendar}}" wx:key="date">
+          <view class="calendar-cell {{item.completed ? 'done' : ''}} {{item.isToday ? 'today' : ''}}"
+                bindtap="selectCalendarDay"
+                data-date="{{item.date}}"
+                data-completed="{{item.completed}}"
+                data-times="{{item.times}}">
+            <text class="day">{{item.day}}</text>
+          </view>
+        </block>
+      </view>
+      <view class="legend">
+        <view class="legend-item">
+          <view class="legend-dot done"></view>
+          <text>已完成</text>
+        </view>
+        <view class="legend-item">
+          <view class="legend-dot today"></view>
+          <text>今天</text>
+        </view>
+        <view class="legend-item">
+          <view class="legend-dot normal"></view>
+          <text>未完成</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 建议 -->
+    <view class="advice-card" wx:if="{{advice}}">
+      <view class="section-title">建议</view>
+      <view class="advice-text">{{advice}}</view>
+    </view>
+
+    <!-- 日期详情弹窗 -->
+    <view class="modal-mask" wx:if="{{showDateModal}}" catchtap="closeDateModal">
+      <view class="date-modal" catchtap>
+        <view class="modal-date">{{selectedDateData.date}}</view>
+        <view class="modal-completion">
+          <view class="completion-item">
+            <view class="completion-label">完成情况</view>
+            <view class="completion-value">
+              {{selectedDateData.completed ? '✓ 已完成' : '✗ 未完成'}}
+            </view>
+          </view>
+          <view class="completion-item">
+            <view class="completion-label">完成次数</view>
+            <view class="completion-value">{{selectedDateData.times}} / {{selectedDateData.targetTimes}}</view>
+          </view>
+        </view>
+        <button class="btn btn-primary" bindtap="closeDateModal">关闭</button>
+      </view>
+    </view>
+  </view>
+
+  <view wx:if="{{loading}}" class="loading">加载中...</view>
+</view>

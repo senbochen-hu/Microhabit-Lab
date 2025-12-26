@@ -1,0 +1,75 @@
+<!-- 新建/编辑习惯页 -->
+<view class="container">
+  <view class="page-container">
+    <!-- 标题和提示 -->
+    <view class="header">
+      <view class="title">{{pageTitle}}</view>
+      <view class="subtitle">写下一个30秒内能完成的小动作</view>
+    </view>
+
+    <!-- 表单 -->
+    <view class="form">
+      <!-- 习惯名称 -->
+      <view class="form-item">
+        <view class="form-label">习惯名称</view>
+        <input class="form-input"
+               placeholder="例: 刷牙后喝一口水 / 睡前写1句话日记"
+               value="{{formData.name}}"
+               maxlength="30"
+               bindinput="handleNameInput" />
+        <view class="form-hint">
+          <text class="text-tertiary">不要写成"每天跑步5公里",先从"穿上跑鞋走出门100米"开始</text>
+          <text class="char-count">{{formData.name.length}}/30</text>
+        </view>
+      </view>
+
+      <!-- 触发器 -->
+      <view class="form-item">
+        <view class="form-label">选择一个触发场景</view>
+        <view class="trigger-options">
+          <view class="trigger-btn {{formData.trigger === item.value ? 'active' : ''}}"
+                wx:for="{{triggerOptions}}"
+                wx:key="value"
+                bindtap="handleTriggerSelect"
+                data-value="{{item.value}}">
+            {{item.label}}
+          </view>
+        </view>
+
+        <!-- 自定义触发器输入 -->
+        <input class="form-input mt-sm"
+               wx:if="{{formData.trigger === 'other'}}"
+               placeholder="请输入触发场景,如: 下午茶时"
+               value="{{formData.customTrigger}}"
+               maxlength="12"
+               bindinput="handleCustomTriggerInput" />
+      </view>
+
+      <!-- 执行频次 -->
+      <view class="form-item">
+        <view class="form-label">每天执行几次?</view>
+        <view class="frequency-options">
+          <view class="frequency-btn {{formData.target_times_per_day === 1 ? 'active' : ''}}"
+                bindtap="handleFrequencySelect"
+                data-value="1">
+            <view class="frequency-main">每天1次</view>
+            <view class="frequency-sub">(推荐)</view>
+          </view>
+          <view class="frequency-btn {{formData.target_times_per_day === 2 ? 'active' : ''}}"
+                bindtap="handleFrequencySelect"
+                data-value="2">
+            <view class="frequency-main">每天2次</view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 底部按钮 -->
+    <view class="footer-actions">
+      <button class="btn btn-outline" bindtap="handleCancel">取消</button>
+      <button class="btn btn-primary" bindtap="handleSubmit" disabled="{{!canSubmit}}">
+        {{mode === 'edit' ? '保存' : '创建习惯'}}
+      </button>
+    </view>
+  </view>
+</view>

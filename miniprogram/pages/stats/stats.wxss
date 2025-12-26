@@ -1,0 +1,261 @@
+/* 数据&我页样式 */
+
+.page-container {
+  padding: 32rpx;
+}
+
+.stats-cards {
+  display: flex;
+  gap: 24rpx;
+  margin-bottom: 32rpx;
+}
+
+.stat-card {
+  flex: 1;
+  background: white;
+  border-radius: 24rpx;
+  padding: 32rpx 24rpx;
+  text-align: center;
+  box-shadow: 0 4rpx 24rpx rgba(15, 23, 42, 0.04);
+}
+
+.stat-value {
+  font-size: 48rpx;
+  font-weight: 600;
+  color: var(--primary-color);
+  margin-bottom: 16rpx;
+}
+
+.stat-label {
+  font-size: 24rpx;
+  color: var(--text-tertiary);
+}
+
+.member-card {
+  background: linear-gradient(135deg, #4CB8A5 0%, #3A9B8A 100%);
+  border-radius: 24rpx;
+  padding: 48rpx 32rpx;
+  margin-bottom: 32rpx;
+  color: white;
+}
+
+.member-title {
+  font-size: 36rpx;
+  font-weight: 600;
+  margin-bottom: 16rpx;
+}
+
+.member-desc {
+  font-size: 28rpx;
+  opacity: 0.9;
+  margin-bottom: 24rpx;
+}
+
+.member-action {
+  font-size: 28rpx;
+  font-weight: 500;
+}
+
+.settings-list {
+  background: white;
+  border-radius: 24rpx;
+  overflow: hidden;
+}
+
+.setting-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 32rpx;
+  border-bottom: 2rpx solid var(--border-light);
+  font-size: 30rpx;
+}
+
+.setting-item:last-child {
+  border-bottom: none;
+}
+
+.arrow {
+  font-size: 48rpx;
+  color: var(--text-tertiary);
+}
+
+.trend-card {
+  background: white;
+  border-radius: 24rpx;
+  padding: 24rpx;
+  margin-bottom: 24rpx;
+  box-shadow: 0 4rpx 24rpx rgba(15, 23, 42, 0.04);
+}
+
+.trend-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16rpx;
+}
+
+.trend-title {
+  font-size: 32rpx;
+  font-weight: 600;
+}
+
+.trend-sub {
+  font-size: 26rpx;
+  color: var(--text-tertiary);
+  margin-top: 6rpx;
+}
+
+.trend-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 12rpx;
+}
+
+.trend-bars.small {
+  max-height: 360rpx;
+  overflow-y: auto;
+}
+
+.bar-row {
+  display: grid;
+  grid-template-columns: 120rpx 1fr 100rpx;
+  align-items: center;
+  gap: 12rpx;
+  font-size: 26rpx;
+}
+
+.bar-label { color: var(--text-secondary); }
+
+.bar-track {
+  width: 100%;
+  height: 16rpx;
+  background: #f0f2f5;
+  border-radius: 12rpx;
+  overflow: hidden;
+}
+
+.bar-fill {
+  height: 100%;
+  background: linear-gradient(135deg, #4CB8A5 0%, #4C9BFF 100%);
+  border-radius: 12rpx;
+  transition: width 0.3s ease;
+}
+
+.bar-value { text-align: right; color: var(--text-secondary); }
+
+/* 趋势条可交互样式 */
+.bar-row.clickable {
+  cursor: pointer;
+  transition: background 0.2s ease;
+  padding: 12rpx;
+  border-radius: 12rpx;
+}
+
+.bar-row.clickable:active {
+  background: rgba(76, 184, 165, 0.08);
+}
+
+/* 趋势详情弹窗 */
+.modal-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: flex-end;
+  z-index: 999;
+  animation: slideIn 0.3s ease-out;
+}
+
+.trend-modal {
+  background: white;
+  border-radius: 24rpx 24rpx 0 0;
+  padding: 32rpx;
+  width: 100%;
+  box-shadow: 0 -4rpx 24rpx rgba(0, 0, 0, 0.1);
+  animation: slideUp 0.3s ease-out;
+}
+
+.modal-date {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 24rpx;
+  text-align: center;
+}
+
+.trend-detail {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16rpx;
+  margin-bottom: 24rpx;
+}
+
+.detail-item {
+  background: #f7f8fa;
+  border-radius: 16rpx;
+  padding: 20rpx;
+  text-align: center;
+}
+
+.detail-label {
+  font-size: 24rpx;
+  color: var(--text-tertiary);
+  display: block;
+  margin-bottom: 8rpx;
+}
+
+.detail-value {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: var(--primary-color);
+  display: block;
+}
+
+.progress-bar-detail {
+  margin-bottom: 32rpx;
+}
+
+.bar-track-detail {
+  width: 100%;
+  height: 20rpx;
+  background: #f0f2f5;
+  border-radius: 12rpx;
+  overflow: hidden;
+}
+
+.bar-fill-detail {
+  height: 100%;
+  background: linear-gradient(135deg, #4CB8A5 0%, #4C9BFF 100%);
+  border-radius: 12rpx;
+  transition: width 0.3s ease;
+}
+
+.trend-modal .btn {
+  width: 100%;
+  margin-top: 16rpx;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+

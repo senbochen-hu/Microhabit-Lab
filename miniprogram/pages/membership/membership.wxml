@@ -1,0 +1,53 @@
+<view class="container">
+  <view class="page-container">
+    <view wx:if="{{noMerchant}}" class="notice">{{noMerchantMsg}}</view>
+
+    <!-- 状态卡片 -->
+    <view class="status-card">
+      <view class="status-title">{{isMember ? '会员已生效' : '解锁微习惯会员'}}</view>
+      <view class="status-desc">{{expireText || statusText}}</view>
+      <view class="price">￥{{price}} / 月</view>
+      <button class="pay-btn" type="primary" bindtap="handlePay" loading="{{paying}}" disabled="{{paying || noMerchant}}">
+        {{noMerchant ? '待配置商户' : (isMember ? '续费会员' : '立即开通')}}
+      </button>
+    </view>
+
+    <!-- 权益列表 -->
+    <view class="benefit-card">
+      <view class="section-title">会员权益</view>
+      <block wx:for="{{benefits}}" wx:key="index">
+        <view class="benefit-item">
+          <text class="dot">•</text>
+          <text class="benefit-text">{{item}}</text>
+        </view>
+      </block>
+    </view>
+
+    <!-- 免费vs会员对比表 -->
+    <view class="comparison-card">
+      <view class="section-title">功能对比</view>
+      <view class="comparison-table">
+        <!-- 表头 -->
+        <view class="table-header">
+          <view class="table-cell header-cell">功能</view>
+          <view class="table-cell header-cell">免费版</view>
+          <view class="table-cell header-cell">会员版</view>
+        </view>
+        <!-- 表行 -->
+        <block wx:for="{{comparisonTable}}" wx:key="feature">
+          <view class="table-row {{index % 2 === 0 ? 'even' : ''}}">
+            <view class="table-cell feature-cell">{{item.feature}}</view>
+            <view class="table-cell free-cell">{{item.free}}</view>
+            <view class="table-cell member-cell">{{item.member}}</view>
+          </view>
+        </block>
+      </view>
+    </view>
+
+    <!-- 提示 -->
+    <view class="hint-card">
+      <view class="hint-title">支付提醒</view>
+      <view class="hint-text">请确保已在云开发控制台配置商户号和支付回调域名。支付成功后系统会自动刷新会员状态。</view>
+    </view>
+  </view>
+</view>

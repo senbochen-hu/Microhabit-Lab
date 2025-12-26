@@ -1,0 +1,117 @@
+<!-- 习惯库页 -->
+<view class="container">
+  <!-- Tab切换 -->
+  <view class="tabs">
+    <view class="tab {{currentTab === 0 ? 'active' : ''}}" bindtap="switchTab" data-index="0">
+      习惯库
+    </view>
+    <view class="tab {{currentTab === 1 ? 'active' : ''}}" bindtap="switchTab" data-index="1">
+      我的习惯
+    </view>
+  </view>
+
+  <!-- 习惯库内容 -->
+  <view class="tab-content" wx:if="{{currentTab === 0}}">
+    <!-- 搜索框 -->
+    <view class="search-box">
+      <input class="search-input" placeholder="搜索习惯模板" bindinput="onSearchInput" value="{{searchQuery}}" />
+    </view>
+
+    <!-- 分类筛选 -->
+    <scroll-view class="category-scroll" scroll-x>
+      <view class="category-item {{selectedCategory === item.value ? 'active' : ''}}"
+            wx:for="{{categories}}"
+            wx:key="value"
+            bindtap="selectCategory"
+            data-value="{{item.value}}">
+        {{item.label}}
+      </view>
+    </scroll-view>
+
+    <!-- 加载中 -->
+    <view class="loading-skeleton" wx:if="{{loadingTemplates}}">
+      <view class="skeleton-card"></view>
+      <view class="skeleton-card"></view>
+      <view class="skeleton-card"></view>
+    </view>
+
+    <!-- 模板列表 -->
+    <view class="template-list" wx:if="{{!loadingTemplates && filteredTemplates.length > 0}}">
+      <view class="template-card" wx:for="{{filteredTemplates}}" wx:key="_id">
+        <view class="template-header">
+          <view class="template-category">{{item.category_name}}</view>
+        </view>
+        <view class="template-name">{{item.name}}</view>
+        <view class="template-trigger">触发: {{item.default_trigger}}</view>
+        <view class="template-desc">{{item.description}}</view>
+        <button class="btn-add" bindtap="addTemplate" data-id="{{item._id}}">+ 添加</button>
+      </view>
+    </view>
+
+    <!-- 加载失败 -->
+    <view class="error-state" wx:if="{{templateError}}">
+      <view class="error-text">加载模板失败，请检查网络后重试</view>
+      <button class="btn-retry" bindtap="retryLoadTemplates">重新加载</button>
+    </view>
+
+    <!-- 空列表 -->
+    <view class="empty-state" wx:if="{{!loadingTemplates && !templateError && filteredTemplates.length === 0}}">
+      <view class="empty-text">没有匹配的模板，换个关键词试试</view>
+    </view>
+  </view>
+
+  <!-- 我的习惯内容 -->
+  <view class="tab-content" wx:if="{{currentTab === 1}}">
+    <!-- 筛选/排序条 -->
+    <view class="filter-bar" wx:if="{{!loadingMyHabits && !myHabitsError && myHabits.length > 0}}">
+      <scroll-view class="filter-scroll" scroll-x>
+        <view class="filter-item {{myHabitsFilter === 'all' ? 'active' : ''}}" bindtap="switchMyHabitsFilter" data-value="all">全部</view>
+        <view class="filter-item {{myHabitsFilter === 'in_progress' ? 'active' : ''}}" bindtap="switchMyHabitsFilter" data-value="in_progress">进行中</view>
+        <view class="filter-item {{myHabitsFilter === 'finished' ? 'active' : ''}}" bindtap="switchMyHabitsFilter" data-value="finished">已完成</view>
+        <view class="divider"></view>
+        <view class="filter-item {{myHabitsSortBy === 'created' ? 'active' : ''}}" bindtap="switchMyHabitsSortBy" data-value="created">按创建</view>
+        <view class="filter-item {{myHabitsSortBy === 'progress' ? 'active' : ''}}" bindtap="switchMyHabitsSortBy" data-value="progress">按进度</view>
+      </scroll-view>
+    </view>
+
+    <!-- 加载中 -->
+    <view class="loading-skeleton" wx:if="{{loadingMyHabits}}">
+      <view class="skeleton-item"></view>
+      <view class="skeleton-item"></view>
+      <view class="skeleton-item"></view>
+    </view>
+
+    <!-- 习惯列表 -->
+    <view class="my-habits-list" wx:if="{{!loadingMyHabits && myHabits.length > 0}}">
+      <view class="habit-item"
+            wx:for="{{myHabits}}"
+            wx:key="_id"
+            bindtap="goToDetail"
+            data-id="{{item._id}}">
+        <view class="habit-main-info">
+          <view class="habit-name">{{item.name}}</view>
+          <view class="habit-status {{item.status}}">
+            {{item.status === 'in_progress' ? '进行中' : '已结束'}}
+          </view>
+        </view>
+        <view class="habit-progress">
+          <view class="habit-progress-text">第 {{item.progress.current}} / {{item.progress.total}} 天</view>
+          <view class="habit-progress-bar">
+            <view class="habit-progress-inner" style="width: {{item.progress.percentage}}%;"></view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 加载失败 -->
+    <view class="error-state" wx:if="{{myHabitsError}}">
+      <view class="error-text">加载习惯列表失败，请检查网络后重试</view>
+      <button class="btn-retry" bindtap="retryLoadMyHabits">重新加载</button>
+    </view>
+
+    <!-- 空列表 -->
+    <view class="empty-state" wx:if="{{!loadingMyHabits && !myHabitsError && myHabits.length === 0}}">
+      <view class="empty-text">你还没有创建任何习惯</view>
+    </view>
+  </view>
+</view>
