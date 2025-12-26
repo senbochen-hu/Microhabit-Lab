@@ -15,7 +15,8 @@ Page({
     checkingInId: null,
     allCompleted: false,
     showCompletedAnimation: false,
-    loadError: false
+    loadError: false,
+    completionRate: 0
   },
 
   onLoad () {
@@ -61,12 +62,31 @@ Page({
         // 检查是否全部完成
         const allCompleted = habitsData.length > 0 && habitsData.every(h => h.is_completed);
 
+        // 计算完成率
+        let completionRate = 0;
+        if (habitsData.length > 0) {
+          const completedCount = habitsData.filter(h => h.is_completed).length;
+          completionRate = Math.round((completedCount / habitsData.length) * 100);
+        }
+
+        // 为每个习惯计算当前周期天数
+        const today = dateUtil.getToday();
+        const habitsWithPeriod = habitsData.map(habit => {
+          const daysDiff = dateUtil.getDaysBetween(habit.start_date, today);
+          const currentDay = (daysDiff % habit.cycle_days) + 1;
+          return {
+            ...habit,
+            current_day: currentDay
+          };
+        });
+
         this.setData({
-          habits: habitsData,
+          habits: habitsWithPeriod,
           endedHabits: ended_habits || [],
           loading: false,
           allCompleted: allCompleted,
-          showCompletedAnimation: allCompleted
+          showCompletedAnimation: allCompleted,
+          completionRate: completionRate
         });
 
         // 如果有结束的习惯,显示弹窗
@@ -119,7 +139,11 @@ Page({
         return habit;
       });
 
-      this.setData({ habits });
+      // 计算新的完成率
+      const completedCount = habits.filter(h => h.is_completed).length;
+      const completionRate = Math.round((completedCount / habits.length) * 100);
+
+      this.setData({ habits, completionRate });
 
       // 调用云函数
       const res = await wx.cloud.callFunction({

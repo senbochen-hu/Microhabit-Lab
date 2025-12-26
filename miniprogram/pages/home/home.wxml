@@ -2,8 +2,23 @@
 <view class="container">
   <!-- 顶部日期和鼓励语 -->
   <view class="header">
-    <view class="date">{{dateDisplay}}</view>
-    <view class="encouragement">{{encouragementText}}</view>
+    <view class="header-top">
+      <view>
+        <view class="date">{{dateDisplay}}</view>
+        <view class="encouragement">{{encouragementText}}</view>
+      </view>
+      <view class="header-stats" wx:if="{{habits.length > 0}}">
+        <view class="stat-item">
+          <view class="stat-label">完成率</view>
+          <view class="stat-value">{{completionRate}}%</view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 完成度进度条 -->
+    <view class="progress-bar" wx:if="{{habits.length > 0}}">
+      <view class="progress-fill" style="width: {{completionRate}}%;"></view>
+    </view>
   </view>
 
   <!-- 全部完成提示 -->
@@ -38,10 +53,17 @@
 
         <!-- 中间:习惯信息 -->
         <view class="habit-info">
-          <view class="habit-name {{item.is_completed ? 'completed' : ''}}">{{item.name}}</view>
+          <view class="habit-header">
+            <view class="habit-name {{item.is_completed ? 'completed' : ''}}">{{item.name}}</view>
+            <view class="habit-period" wx:if="{{item.cycle_days}}">Day {{item.current_day}}/{{item.cycle_days}}</view>
+          </view>
           <view class="habit-meta">
-            <view class="trigger-tag tag-primary">触发: {{item.trigger}}</view>
-            <view class="progress-text">今日进度 {{item.today_times}}/{{item.target_times_per_day}}</view>
+            <view class="trigger-tag tag-primary">{{item.trigger}}</view>
+            <view class="progress-text">{{item.today_times}}/{{item.target_times_per_day}}</view>
+          </view>
+          <!-- 进度条 -->
+          <view class="habit-progress-bar">
+            <view class="habit-progress-fill" style="width: {{(item.today_times / item.target_times_per_day) * 100}}%;"></view>
           </view>
         </view>
 
