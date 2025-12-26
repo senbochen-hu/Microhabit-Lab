@@ -126,20 +126,23 @@ Page({
   async loadMyHabits () {
     this.setData({ loadingMyHabits: true, myHabitsError: false });
     try {
-      const db = wx.cloud.database();
-      const res = await db.collection('user_habits')
-        .orderBy('created_at', 'desc')
-        .get();
-
-      const today = dateUtil.getToday();
-      const habits = res.data.map(habit => ({
-        ...habit,
-        progress: cycleUtil.getCycleProgress(habit)
-      }));
-
-      this.setData({ myHabits: habits, loadingMyHabits: false }, () => {
-        this.filterAndSortMyHabits();
+      // 使用云函数而不是直接查询，避免权限问题
+      const res = await wx.cloud.callFunction({
+        name: 'getMyHabits'
       });
+
+      if (res.result.code === 0) {
+        const habits = res.result.data.map(habit => ({
+          ...habit,
+          progress: cycleUtil.getCycleProgress(habit)
+        }));
+
+        this.setData({ myHabits: habits, loadingMyHabits: false }, () => {
+          this.filterAndSortMyHabits();
+        });
+      } else {
+        throw new Error(res.result.message);
+      }
     } catch (error) {
       console.error('加载我的习惯失败:', error);
       this.setData({ loadingMyHabits: false, myHabitsError: true });
